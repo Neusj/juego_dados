@@ -48,29 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 Random randomNumberGenerator = new Random();
 
 
-                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            int number = randomNumberGenerator.nextInt(6);
-                            Log.d("Dados", "El numero de la izquierda es " + number);
-
-                            int imageResourceId = diceArray[number];
-                            leftDice.setImageResource(imageResourceId);
-
-                            number = randomNumberGenerator.nextInt(6);
-                            Log.d("Dados", "El numero de la derecha es " + number);
-                            imageResourceId = diceArray[number];
-                            rightDice.setImageResource(imageResourceId);
-                        }
-                    },500 );
-
-               
-                new CountDownTimer(30000, 1000) {
+                new CountDownTimer(3500, 150) {
+                    int number = 0;
 
                     public void onTick(long millisUntilFinished) {
-                        mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        mTextField.setText("Jugando...");
 
-                        int number = randomNumberGenerator.nextInt(6);
+                        number = randomNumberGenerator.nextInt(6);
                         Log.d("Dados", "El numero de la izquierda es " + number);
 
                         int imageResourceId = diceArray[number];
@@ -83,15 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFinish() {
-                        mTextField.setText("done!");
+                        mTextField.setText("Listo!");
                     }
                 }.start();
-
-
-
-
-
-
             }
         });
     }
